@@ -20,8 +20,14 @@
         </ul>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- VIDEO HERO SECTION -->
     <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="https://api5.apiapi2.lat/450d93f03633de0a1ce8cbf163eb07f0/download/0e92ee55-d9de-420d-a6bf-ecee82774d7d/b0bdf1a1b184096d86d877b695aab5a5/" type="video/mp4">
+        </video>
+
+        <div class="hero-overlay"></div>
+
         <div class="hero-content">
             <h1>Rumaan’s Store</h1>
             <p>Premium used tech at unbeatable prices.</p>
@@ -62,6 +68,11 @@
 
             <button class="slider-btn next">›</button>
         </div>
+    </section>
+
+    <!-- SEARCH BAR -->
+    <section class="search-section">
+        <input type="text" id="searchInput" placeholder="Search products...">
     </section>
 
     <!-- PRODUCT SECTION -->
@@ -143,6 +154,25 @@
             currentSlide--;
             if (currentSlide < 0) currentSlide = 2;
             slider.style.transform = `translateX(-${currentSlide * 270}px)`;
+        });
+
+        // SEARCH BAR FUNCTION
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener("keyup", () => {
+            const filter = searchInput.value.toLowerCase();
+            const products = document.querySelectorAll(".product-card");
+
+            products.forEach(product => {
+                const title = product.querySelector("h3").innerText.toLowerCase();
+                const desc = product.querySelector(".desc").innerText.toLowerCase();
+
+                if (title.includes(filter) || desc.includes(filter)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
         });
     </script>
 

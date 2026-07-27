@@ -49,32 +49,45 @@ html {
     color: #00aaff;
 }
 
-/* HERO SECTION */
+/* VIDEO HERO SECTION */
 .hero {
+    position: relative;
     width: 100%;
     height: 75vh;
-    background: url('images/hero.jpg') center/cover no-repeat;
-    position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.hero::before {
-    content: "";
+/* Background Video */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Dark Overlay */
+.hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.55);
+    z-index: 2;
 }
 
+/* Hero Text */
 .hero-content {
     position: relative;
+    z-index: 3;
     text-align: center;
     color: #fff;
-    z-index: 2;
     opacity: 0;
     animation: fadeInUp 1.2s ease forwards;
 }
@@ -200,6 +213,30 @@ html {
 
 .next {
     right: -10px;
+}
+
+/* SEARCH BAR */
+.search-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+#searchInput {
+    width: 80%;
+    max-width: 400px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #00aaff;
+    background: #111;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #0088cc;
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
 }
 
 /* PRODUCT SECTION */
