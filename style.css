@@ -1,21 +1,20 @@
-/* GLOBAL DARK THEME */
+/* GLOBAL VOLCANO THEME */
 body {
-    background: #0d0d0d;
-    color: #e6e6e6;
+    background: linear-gradient(180deg, #0a0a0a, #1a0f0f, #2b2b2b);
+    color: #f2f2f2;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     animation: fadePage 1s ease;
 }
 
-/* Smooth Scroll */
 html {
     scroll-behavior: smooth;
 }
 
 /* NAVBAR */
 .navbar {
-    background: #111;
+    background: #0a0a0a;
     color: #fff;
     padding: 15px 30px;
     display: flex;
@@ -24,12 +23,13 @@ html {
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid #222;
+    border-bottom: 2px solid #331000;
 }
 
 .logo {
     font-size: 22px;
     font-weight: bold;
+    color: #ff4500;
 }
 
 .nav-links {
@@ -46,10 +46,10 @@ html {
 }
 
 .nav-links li a:hover {
-    color: #00aaff;
+    color: #ff4500;
 }
 
-/* VIDEO HERO SECTION */
+/* VOLCANO VIDEO HERO */
 .hero {
     position: relative;
     width: 100%;
@@ -60,7 +60,6 @@ html {
     align-items: center;
 }
 
-/* Background Video */
 .hero-video {
     position: absolute;
     top: 0;
@@ -71,18 +70,17 @@ html {
     z-index: 1;
 }
 
-/* Dark Overlay */
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(2px);
     z-index: 2;
 }
 
-/* Hero Text */
 .hero-content {
     position: relative;
     z-index: 3;
@@ -96,11 +94,13 @@ html {
     font-size: 52px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #ff4500;
+    animation: lavaGlow 3s infinite ease-in-out;
 }
 
 .hero-content p {
     font-size: 22px;
-    color: #ddd;
+    color: #f2f2f2;
     margin-bottom: 25px;
 }
 
@@ -112,28 +112,27 @@ html {
 
 .hero-btn {
     padding: 12px 25px;
-    background: #00aaff;
+    background: #ff4500;
     color: #fff;
     text-decoration: none;
     border-radius: 6px;
     font-size: 16px;
     transition: 0.3s;
-    transform: translateY(0);
 }
 
 .hero-btn:hover {
-    background: #0088cc;
+    background: #d62828;
     transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
 }
 
 .hero-btn.secondary {
-    background: #25D366;
+    background: #d62828;
 }
 
 .hero-btn.secondary:hover {
-    background: #1ebe5d;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    background: #ff4500;
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
 }
 
 /* FEATURED SECTION */
@@ -145,7 +144,7 @@ html {
 .section-title {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #fff;
+    color: #ff4500;
 }
 
 /* Slider Container */
@@ -166,11 +165,11 @@ html {
 /* Individual Slide */
 .slide {
     min-width: 250px;
-    background: #1a1a1a;
+    background: #1a0f0f;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
     transition: 0.3s;
 }
 
@@ -192,7 +191,7 @@ html {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: #00aaff;
+    background: #ff4500;
     color: #fff;
     border: none;
     padding: 12px 18px;
@@ -204,7 +203,7 @@ html {
 }
 
 .slider-btn:hover {
-    background: #0088cc;
+    background: #d62828;
 }
 
 .prev {
@@ -226,8 +225,8 @@ html {
     max-width: 400px;
     padding: 12px 15px;
     border-radius: 8px;
-    border: 2px solid #00aaff;
-    background: #111;
+    border: 2px solid #ff4500;
+    background: #1a0f0f;
     color: #fff;
     font-size: 16px;
     outline: none;
@@ -235,8 +234,8 @@ html {
 }
 
 #searchInput:focus {
-    border-color: #0088cc;
-    box-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+    border-color: #d62828;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
 }
 
 /* PRODUCT SECTION */
@@ -250,26 +249,21 @@ html {
 
 /* PRODUCT CARDS */
 .product-card {
-    background: #1a1a1a;
+    background: #1a0f0f;
     padding: 25px;
     width: 280px;
     border-radius: 14px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(0,0,0,0.45);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid #222;
+    border: 1px solid rgba(255, 69, 0, 0.4);
     opacity: 0;
     animation: cardFade 1.2s ease forwards;
-    transform-style: preserve-3d;
 }
-
-.product-card:nth-child(1) { animation-delay: 0.2s; }
-.product-card:nth-child(2) { animation-delay: 0.4s; }
-.product-card:nth-child(3) { animation-delay: 0.6s; }
 
 .product-card:hover {
     transform: perspective(600px) rotateX(4deg) rotateY(4deg);
-    box-shadow: 0 0 35px rgba(0,0,0,0.6);
+    box-shadow: 0 0 35px rgba(255, 69, 0, 0.6);
 }
 
 /* Product Image */
@@ -296,7 +290,7 @@ html {
 /* Price */
 .price {
     font-size: 24px;
-    color: #00aaff;
+    color: #ff4500;
     font-weight: bold;
     margin: 12px 0;
 }
@@ -319,51 +313,36 @@ html {
 .buy-btn {
     display: inline-block;
     padding: 10px 20px;
-    background: #00aaff;
+    background: #ff4500;
     color: #fff;
     text-decoration: none;
     border-radius: 6px;
     transition: 0.3s;
-    transform: translateY(0);
     position: relative;
     overflow: hidden;
 }
 
 .buy-btn:hover {
-    background: #0088cc;
+    background: #d62828;
     transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
-}
-
-/* Ripple Effect */
-.buy-btn:active::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255,255,255,0.3);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: ripple 0.6s ease-out;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
 }
 
 /* WHATSAPP BUTTON */
 .buy-btn.whatsapp {
-    background: #25D366;
+    background: #d62828;
 }
 
 .buy-btn.whatsapp:hover {
-    background: #1ebe5d;
-    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+    background: #ff4500;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
 }
 
 /* FOOTER */
 footer {
     text-align: center;
     padding: 20px;
-    background: #111;
+    background: #0a0a0a;
     color: #aaa;
     margin-top: 40px;
 }
@@ -373,7 +352,7 @@ footer {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background: #25D366;
+    background: #d62828;
     color: #fff;
     width: 55px;
     height: 55px;
@@ -383,14 +362,14 @@ footer {
     align-items: center;
     font-size: 28px;
     text-decoration: none;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
     transition: 0.3s;
     z-index: 9999;
     animation: pulse 2.5s infinite ease-in-out;
 }
 
 .whatsapp-chat:hover {
-    background: #1ebe5d;
+    background: #ff4500;
     transform: scale(1.1);
 }
 
@@ -399,7 +378,7 @@ footer {
     position: fixed;
     bottom: 90px;
     right: 25px;
-    background: #00aaff;
+    background: #ff4500;
     color: #fff;
     padding: 12px 18px;
     border-radius: 50%;
@@ -426,16 +405,3 @@ footer {
 
 @keyframes pulse {
     0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
-
-@keyframes ripple {
-    from { opacity: 1; transform: translate(-50%, -50%) scale(0); }
-    to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
-}
-
-@keyframes fadePage {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
