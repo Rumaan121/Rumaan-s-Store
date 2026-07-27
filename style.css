@@ -5,6 +5,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    animation: fadePage 1s ease;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
 }
 
 /* NAVBAR */
@@ -105,6 +111,7 @@ body {
 .hero-btn:hover {
     background: #0088cc;
     transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
 }
 
 .hero-btn.secondary {
@@ -113,6 +120,7 @@ body {
 
 .hero-btn.secondary:hover {
     background: #1ebe5d;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
 }
 
 /* PRODUCT SECTION */
@@ -136,6 +144,7 @@ body {
     border: 1px solid #222;
     opacity: 0;
     animation: cardFade 1.2s ease forwards;
+    transform-style: preserve-3d;
 }
 
 .product-card:nth-child(1) { animation-delay: 0.2s; }
@@ -143,7 +152,7 @@ body {
 .product-card:nth-child(3) { animation-delay: 0.6s; }
 
 .product-card:hover {
-    transform: translateY(-8px);
+    transform: perspective(600px) rotateX(4deg) rotateY(4deg);
     box-shadow: 0 0 35px rgba(0,0,0,0.6);
 }
 
@@ -154,6 +163,11 @@ body {
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 18px;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
 }
 
 /* Product Title */
@@ -177,6 +191,12 @@ body {
     font-size: 15px;
     margin-bottom: 20px;
     line-height: 1.4;
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.product-card:hover .desc {
+    opacity: 1;
 }
 
 /* BUY BUTTON */
@@ -189,26 +209,38 @@ body {
     border-radius: 6px;
     transition: 0.3s;
     transform: translateY(0);
+    position: relative;
+    overflow: hidden;
 }
 
 .buy-btn:hover {
     background: #0088cc;
     transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+}
+
+/* Ripple Effect */
+.buy-btn:active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
 }
 
 /* WHATSAPP BUTTON (Green) */
 .buy-btn.whatsapp {
     background: #25D366;
-    color: #fff;
-    border-radius: 6px;
-    padding: 10px 20px;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
 }
 
 .buy-btn.whatsapp:hover {
     background: #1ebe5d;
+    box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
 }
 
 /* FOOTER */
@@ -246,6 +278,25 @@ footer {
     transform: scale(1.1);
 }
 
+/* BACK TO TOP BUTTON */
+.back-to-top {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    background: #00aaff;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 50%;
+    font-size: 20px;
+    text-decoration: none;
+    display: none;
+    transition: 0.3s;
+}
+
+.back-to-top.show {
+    display: block;
+}
+
 /* ANIMATIONS */
 @keyframes fadeInUp {
     0% { opacity: 0; transform: translateY(25px); }
@@ -261,4 +312,14 @@ footer {
     0% { transform: scale(1); }
     50% { transform: scale(1.08); }
     100% { transform: scale(1); }
+}
+
+@keyframes ripple {
+    from { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+    to { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes fadePage {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
