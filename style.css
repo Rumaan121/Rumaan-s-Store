@@ -128,3 +128,18 @@ footer {
     color: #aaa;
     margin-top: 40px;
 }
+
+/* WHATSAPP BUTTON (Green) */
+.buy-btn.whatsapp {
+    background: #25D366;
+    color: #fff;
+    border-radius: 6px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.buy-btn.whatsapp:hover {
+    background: #1ebe5d;
+}
