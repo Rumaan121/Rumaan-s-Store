@@ -71,38 +71,53 @@ header p {
     flex-wrap: wrap;
 }
 
-/* PRODUCT CARDS */
+/* ⭐ IMPROVED PRODUCT CARDS ⭐ */
 .product-card {
     background: #1a1a1a;
-    padding: 20px;
-    width: 260px;
-    border-radius: 10px;
+    padding: 25px;
+    width: 280px;
+    border-radius: 14px;
     text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(0,0,0,0.45);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #222;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+    transform: translateY(-8px);
+    box-shadow: 0 0 35px rgba(0,0,0,0.6);
 }
 
+/* Product Image */
 .product-card img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 18px;
 }
 
+/* Product Title */
+.product-card h3 {
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Price */
 .price {
-    font-size: 22px;
+    font-size: 24px;
     color: #00aaff;
-    margin: 10px 0;
+    font-weight: bold;
+    margin: 12px 0;
 }
 
+/* Description */
 .desc {
     color: #ccc;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.4;
 }
 
 /* BUY BUTTON */
