@@ -143,3 +143,28 @@ footer {
 .buy-btn.whatsapp:hover {
     background: #1ebe5d;
 }
+
+/* FLOATING WHATSAPP CHAT BUBBLE */
+.whatsapp-chat {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #25D366;
+    color: #fff;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.whatsapp-chat:hover {
+    background: #1ebe5d;
+    transform: scale(1.1);
+}
