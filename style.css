@@ -123,6 +123,85 @@ html {
     box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
 }
 
+/* FEATURED SECTION */
+.featured {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Slider Container */
+.slider-container {
+    position: relative;
+    width: 90%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Slider Track */
+.slider {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+/* Individual Slide */
+.slide {
+    min-width: 250px;
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    transition: 0.3s;
+}
+
+.slide:hover {
+    transform: translateY(-5px);
+}
+
+/* Slide Image */
+.slide img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #00aaff;
+    color: #fff;
+    border: none;
+    padding: 12px 18px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background: #0088cc;
+}
+
+.prev {
+    left: -10px;
+}
+
+.next {
+    right: -10px;
+}
+
 /* PRODUCT SECTION */
 .products {
     display: flex;
@@ -132,7 +211,7 @@ html {
     flex-wrap: wrap;
 }
 
-/* IMPROVED PRODUCT CARDS */
+/* PRODUCT CARDS */
 .product-card {
     background: #1a1a1a;
     padding: 25px;
@@ -233,7 +312,7 @@ html {
     animation: ripple 0.6s ease-out;
 }
 
-/* WHATSAPP BUTTON (Green) */
+/* WHATSAPP BUTTON */
 .buy-btn.whatsapp {
     background: #25D366;
 }

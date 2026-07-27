@@ -13,6 +13,7 @@
         <h2 class="logo">Rumaan's Store</h2>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
+            <li><a href="#featured">Featured</a></li>
             <li><a href="#products">Products</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#about">About</a></li>
@@ -29,6 +30,37 @@
                 <a href="#products" class="hero-btn">Shop Products</a>
                 <a href="#contact" class="hero-btn secondary">Contact</a>
             </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS SLIDER -->
+    <section class="featured" id="featured">
+        <h2 class="section-title">Featured Products</h2>
+
+        <div class="slider-container">
+            <button class="slider-btn prev">‹</button>
+
+            <div class="slider">
+                <div class="slide">
+                    <img src="images/product1.jpg" alt="Featured iPhone">
+                    <h3>Used iPhone 12</h3>
+                    <p class="price">£250</p>
+                </div>
+
+                <div class="slide">
+                    <img src="images/product2.jpg" alt="Featured Headset">
+                    <h3>Gaming Headset</h3>
+                    <p class="price">£35</p>
+                </div>
+
+                <div class="slide">
+                    <img src="images/product3.jpg" alt="Featured Speaker">
+                    <h3>Bluetooth Speaker</h3>
+                    <p class="price">£20</p>
+                </div>
+            </div>
+
+            <button class="slider-btn next">›</button>
         </div>
     </section>
 
@@ -84,7 +116,7 @@
 
     <!-- INTERACTIVE JS -->
     <script>
-        // Show back-to-top button when scrolling
+        // Back-to-top button visibility
         window.addEventListener("scroll", () => {
             const btn = document.querySelector(".back-to-top");
             if (window.scrollY > 300) {
@@ -92,6 +124,25 @@
             } else {
                 btn.classList.remove("show");
             }
+        });
+
+        // Featured Slider Logic
+        const slider = document.querySelector('.slider');
+        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.prev');
+
+        let currentSlide = 0;
+
+        nextBtn.addEventListener('click', () => {
+            currentSlide++;
+            if (currentSlide > 2) currentSlide = 0;
+            slider.style.transform = `translateX(-${currentSlide * 270}px)`;
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentSlide--;
+            if (currentSlide < 0) currentSlide = 2;
+            slider.style.transform = `translateX(-${currentSlide * 270}px)`;
         });
     </script>
 
