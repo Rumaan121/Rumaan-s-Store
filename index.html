@@ -8,6 +8,26 @@
 </head>
 <body>
 
+    <!-- GLOBAL VOLCANO VFX -->
+    <div class="lava-drip"></div>
+    <div class="fire-particles"></div>
+    <div class="lightning"></div>
+    <div class="smoke"></div>
+    <div class="lava-river"></div>
+
+    <!-- SOUND EFFECTS -->
+    <audio id="lavaSound" autoplay loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7f3e2b9c7f.mp3?filename=rumble-ambient-volcano-21977.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="thunderSound">
+        <source src="https://cdn.pixabay.com/download/audio/2021/09/07/audio_3b9b0e1b4e.mp3?filename=thunder-110397.mp3" type="audio/mp3">
+    </audio>
+
+    <audio id="eruptionSound">
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b3e2b9c7f.mp3?filename=explosion-21978.mp3" type="audio/mp3">
+    </audio>
+
     <!-- NAVBAR -->
     <nav class="navbar">
         <h2 class="logo">Rumaan's Volcano Store</h2>
@@ -20,8 +40,12 @@
         </ul>
     </nav>
 
-    <!-- VOLCANO VIDEO HERO -->
+    <!-- HERO SECTION -->
     <section class="hero">
+
+        <!-- Eruption Glow -->
+        <div class="eruption"></div>
+
         <video autoplay muted loop playsinline class="hero-video">
             <source src="https://cdn.pixabay.com/vimeo/458533921/volcano-33153.mp4?width=1280&hash=8e7f3b8b0f" type="video/mp4">
         </video>
@@ -39,7 +63,7 @@
         </div>
     </section>
 
-    <!-- FEATURED PRODUCTS SLIDER -->
+    <!-- FEATURED PRODUCTS -->
     <section class="featured" id="featured">
         <h2 class="section-title">Molten Featured Products</h2>
 
@@ -78,35 +102,29 @@
     <!-- PRODUCT SECTION -->
     <section class="products" id="products">
 
-        <!-- iPhone -->
         <div class="product-card">
             <img src="images/product1.jpg" alt="Used iPhone 12">
             <h3>Used iPhone 12</h3>
             <p class="price">£250</p>
             <p class="desc">128GB • Good condition • No cracks</p>
-
             <a href="https://wa.me/447512345678?text=Hi%20Rumaan,%20I%20want%20to%20buy%20the%20Used%20iPhone%2012"
                class="buy-btn whatsapp" target="_blank">Buy on WhatsApp</a>
         </div>
 
-        <!-- Headset -->
         <div class="product-card">
             <img src="images/product2.jpg" alt="Gaming Headset">
             <h3>Gaming Headset</h3>
             <p class="price">£35</p>
             <p class="desc">Clean • Works perfectly • RGB lights</p>
-
             <a href="https://wa.me/447512345678?text=Hi%20Rumaan,%20I%20want%20to%20buy%20the%20Gaming%20Headset"
                class="buy-btn whatsapp" target="_blank">Buy on WhatsApp</a>
         </div>
 
-        <!-- Speaker -->
         <div class="product-card">
             <img src="images/product3.jpg" alt="Bluetooth Speaker">
             <h3>Bluetooth Speaker</h3>
             <p class="price">£20</p>
             <p class="desc">Loud • Deep bass • Portable</p>
-
             <a href="https://wa.me/447833914552?text=Hi%20Rumaan,%20I%20want%20to%20buy%20the%20Bluetooth%20Speaker"
                class="buy-btn whatsapp" target="_blank">Buy on WhatsApp</a>
         </div>
@@ -118,61 +136,73 @@
         <p>© 2026 Rumaan's Volcano Store — Manchester, UK</p>
     </footer>
 
-    <!-- Floating WhatsApp Chat Bubble -->
+    <!-- WHATSAPP BUBBLE -->
     <a href="https://wa.me/447833914552?text=Hi%20Rumaan,%20I%20need%20help%20with%20a%20product"
        class="whatsapp-chat" target="_blank">🔥</a>
 
-    <!-- Back to Top Button -->
+    <!-- BACK TO TOP -->
     <a href="#" class="back-to-top">↑</a>
 
-    <!-- INTERACTIVE JS -->
+    <!-- JAVASCRIPT -->
     <script>
-        // Back-to-top button visibility
+        // Back-to-top visibility
         window.addEventListener("scroll", () => {
             const btn = document.querySelector(".back-to-top");
-            if (window.scrollY > 300) {
-                btn.classList.add("show");
-            } else {
-                btn.classList.remove("show");
-            }
+            btn.classList.toggle("show", window.scrollY > 300);
         });
 
-        // Featured Slider Logic
+        // Slider
         const slider = document.querySelector('.slider');
         const nextBtn = document.querySelector('.next');
         const prevBtn = document.querySelector('.prev');
-
         let currentSlide = 0;
 
         nextBtn.addEventListener('click', () => {
-            currentSlide++;
-            if (currentSlide > 2) currentSlide = 0;
+            currentSlide = (currentSlide + 1) % 3;
             slider.style.transform = `translateX(-${currentSlide * 270}px)`;
         });
 
         prevBtn.addEventListener('click', () => {
-            currentSlide--;
-            if (currentSlide < 0) currentSlide = 2;
+            currentSlide = (currentSlide - 1 + 3) % 3;
             slider.style.transform = `translateX(-${currentSlide * 270}px)`;
         });
 
-        // SEARCH BAR FUNCTION
+        // Search
         const searchInput = document.getElementById("searchInput");
-
         searchInput.addEventListener("keyup", () => {
             const filter = searchInput.value.toLowerCase();
-            const products = document.querySelectorAll(".product-card");
-
-            products.forEach(product => {
-                const title = product.querySelector("h3").innerText.toLowerCase();
-                const desc = product.querySelector(".desc").innerText.toLowerCase();
-
-                if (title.includes(filter) || desc.includes(filter)) {
-                    product.style.display = "block";
-                } else {
-                    product.style.display = "none";
-                }
+            document.querySelectorAll(".product-card").forEach(card => {
+                const title = card.querySelector("h3").innerText.toLowerCase();
+                const desc = card.querySelector(".desc").innerText.toLowerCase();
+                card.style.display = (title.includes(filter) || desc.includes(filter)) ? "block" : "none";
             });
+        });
+
+        // Thunder synced with lightning
+        const lightning = document.querySelector(".lightning");
+        const thunder = document.getElementById("thunderSound");
+        lightning.addEventListener("animationiteration", () => {
+            thunder.currentTime = 0;
+            thunder.play();
+        });
+
+        // Eruption sound on button click
+        const eruptionSound = document.getElementById("eruptionSound");
+        document.querySelectorAll(".hero-btn, .buy-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                eruptionSound.currentTime = 0;
+                eruptionSound.play();
+            });
+        });
+
+        // Fireball cursor trail
+        document.addEventListener("mousemove", (e) => {
+            const fb = document.createElement("div");
+            fb.classList.add("fireball");
+            fb.style.left = e.pageX + "px";
+            fb.style.top = e.pageY + "px";
+            document.body.appendChild(fb);
+            setTimeout(() => fb.remove(), 600);
         });
     </script>
 

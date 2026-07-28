@@ -1,359 +1,371 @@
-/* GLOBAL VOLCANO THEME */
+/* 🌋 GLOBAL VOLCANO BACKGROUND */
 body {
-    background: linear-gradient(180deg, #0a0a0a, #1a0f0f, #2b2b2b);
+    background: url('https://i.imgur.com/6YVQ0Qk.jpeg') center/cover fixed;
     color: #f2f2f2;
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    animation: fadePage 1s ease;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
+/* 🌋 LAVA DRIP */
+.lava-drip {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    background: linear-gradient(180deg, #ff4500, transparent);
+    animation: drip 2s infinite ease-in-out;
+    z-index: 999;
+}
+@keyframes drip {
+    0% { height: 25px; opacity: 1; }
+    50% { height: 60px; opacity: 0.6; }
+    100% { height: 25px; opacity: 1; }
 }
 
-/* NAVBAR */
+/* 🔥 FIRE PARTICLES */
+.fire-particles {
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, rgba(255,69,0,0.8) 2px, transparent 2px);
+    background-size: 4px 4px;
+    animation: fireFloat 6s infinite linear;
+    z-index: 998;
+}
+@keyframes fireFloat {
+    from { transform: translateY(0); }
+    to { transform: translateY(-200px); }
+}
+
+/* ⚡ LIGHTNING FLASH */
+.lightning {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    animation: lightningFlash 8s infinite;
+    z-index: 997;
+}
+@keyframes lightningFlash {
+    0%, 95%, 100% { opacity: 0; }
+    96% { opacity: 0.8; }
+    97% { opacity: 0; }
+}
+
+/* 🌫 SMOKE RISING */
+.smoke {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 200px;
+    background: url('https://i.imgur.com/8QfQ2Qp.png');
+    background-size: cover;
+    opacity: 0.4;
+    animation: smokeRise 10s infinite linear;
+    z-index: 996;
+}
+@keyframes smokeRise {
+    from { transform: translateY(0); }
+    to { transform: translateY(-80px); }
+}
+
+/* 🌋 LAVA RIVER */
+.lava-river {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    background: url('https://i.imgur.com/2u7QYfM.gif') repeat-x;
+    background-size: cover;
+    animation: lavaFlow 6s linear infinite;
+    z-index: 900;
+}
+@keyframes lavaFlow {
+    from { background-position: 0 0; }
+    to { background-position: -1000px 0; }
+}
+
+/* 🌋 ERUPTION GLOW BEHIND HERO TEXT */
+.eruption {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,69,0,0.9), transparent);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: eruptionPulse 3s infinite ease-in-out;
+    z-index: 2;
+}
+@keyframes eruptionPulse {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+    50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+}
+
+/* 🔥 FIREBALL CURSOR TRAIL */
+.fireball {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #ff4500, transparent);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: fireballFade 0.6s linear forwards;
+    z-index: 9999;
+}
+@keyframes fireballFade {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(2); }
+}
+
+/* 🌋 NAVBAR */
 .navbar {
     background: #0a0a0a;
-    color: #fff;
     padding: 15px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 2px solid #331000;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid #331000;
 }
-
 .logo {
+    color: #ff4500;
     font-size: 22px;
     font-weight: bold;
-    color: #ff4500;
 }
-
 .nav-links {
     list-style: none;
     display: flex;
     gap: 25px;
 }
-
 .nav-links li a {
     color: #fff;
     text-decoration: none;
-    font-size: 16px;
     transition: 0.3s;
 }
-
 .nav-links li a:hover {
     color: #ff4500;
 }
 
-/* VOLCANO VIDEO HERO */
+/* 🌋 HERO SECTION */
 .hero {
     position: relative;
     width: 100%;
     height: 75vh;
     overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
 .hero-video {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: 1;
 }
-
 .hero-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.65);
     backdrop-filter: blur(2px);
     z-index: 2;
 }
-
 .hero-content {
     position: relative;
     z-index: 3;
     text-align: center;
-    color: #fff;
-    opacity: 0;
     animation: fadeInUp 1.2s ease forwards;
 }
-
 .hero-content h1 {
-    font-size: 52px;
-    font-weight: bold;
-    margin-bottom: 10px;
     color: #ff4500;
+    font-size: 52px;
     animation: lavaGlow 3s infinite ease-in-out;
 }
-
-.hero-content p {
-    font-size: 22px;
-    color: #f2f2f2;
-    margin-bottom: 25px;
+@keyframes lavaGlow {
+    0% { text-shadow: 0 0 10px #ff4500; }
+    50% { text-shadow: 0 0 25px #d62828; }
+    100% { text-shadow: 0 0 10px #ff4500; }
 }
 
-.hero-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-}
-
+/* 🌋 HERO BUTTONS */
 .hero-btn {
-    padding: 12px 25px;
     background: #ff4500;
+    padding: 12px 25px;
+    border-radius: 6px;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
-    font-size: 16px;
     transition: 0.3s;
 }
-
 .hero-btn:hover {
     background: #d62828;
-    transform: translateY(-3px);
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
+    box-shadow: 0 0 20px rgba(255,69,0,0.7);
 }
-
 .hero-btn.secondary {
     background: #d62828;
 }
 
-.hero-btn.secondary:hover {
-    background: #ff4500;
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.7);
-}
-
-/* FEATURED SECTION */
+/* 🌋 FEATURED SECTION */
 .featured {
-    padding: 40px 20px;
     text-align: center;
+    padding: 40px 20px;
 }
-
 .section-title {
-    font-size: 32px;
-    margin-bottom: 20px;
     color: #ff4500;
+    font-size: 32px;
 }
 
-/* Slider Container */
+/* 🌋 SLIDER */
 .slider-container {
     position: relative;
     width: 90%;
     margin: auto;
     overflow: hidden;
 }
-
-/* Slider Track */
 .slider {
     display: flex;
     gap: 20px;
     transition: transform 0.5s ease;
 }
-
-/* Individual Slide */
 .slide {
     min-width: 250px;
     background: #1a0f0f;
     padding: 20px;
     border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255,69,0,0.3);
     transition: 0.3s;
 }
-
 .slide:hover {
     transform: translateY(-5px);
 }
-
-/* Slide Image */
 .slide img {
     width: 100%;
     height: 180px;
     object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 10px;
 }
-
-/* Slider Buttons */
 .slider-btn {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     background: #ff4500;
     color: #fff;
-    border: none;
-    padding: 12px 18px;
-    font-size: 22px;
-    cursor: pointer;
     border-radius: 50%;
+    padding: 12px 18px;
+    cursor: pointer;
+    font-size: 22px;
     transition: 0.3s;
-    z-index: 10;
 }
-
 .slider-btn:hover {
     background: #d62828;
 }
+.prev { left: -10px; }
+.next { right: -10px; }
 
-.prev {
-    left: -10px;
-}
-
-.next {
-    right: -10px;
-}
-
-/* SEARCH BAR */
+/* 🌋 SEARCH BAR */
 .search-section {
     text-align: center;
     margin-top: 40px;
 }
-
 #searchInput {
     width: 80%;
     max-width: 400px;
-    padding: 12px 15px;
-    border-radius: 8px;
+    padding: 12px;
     border: 2px solid #ff4500;
     background: #1a0f0f;
     color: #fff;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s;
+    border-radius: 8px;
 }
 
-#searchInput:focus {
-    border-color: #d62828;
-    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
-}
-
-/* PRODUCT SECTION */
-.products {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 40px;
-    flex-wrap: wrap;
-}
-
-/* PRODUCT CARDS */
+/* 🌋 PRODUCT CARDS */
 .product-card {
     background: #1a0f0f;
     padding: 25px;
     width: 280px;
     border-radius: 14px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 69, 0, 0.4);
-    opacity: 0;
-    animation: cardFade 1.2s ease forwards;
+    border: 2px solid rgba(255,69,0,0.5);
+    box-shadow: 0 0 25px rgba(255,69,0,0.4);
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
 }
-
 .product-card:hover {
-    transform: perspective(600px) rotateX(4deg) rotateY(4deg);
-    box-shadow: 0 0 35px rgba(255, 69, 0, 0.6);
+    box-shadow: 0 0 45px rgba(255,69,0,0.8);
 }
 
-/* Product Image */
-.product-card img {
+/* 🪨 CRACKED ROCK EFFECT */
+.product-card::after {
+    content: "";
+    position: absolute;
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    transition: transform 0.4s ease;
-}
-
-.product-card:hover img {
-    transform: scale(1.05);
-}
-
-/* Product Title */
-.product-card h3 {
-    font-size: 20px;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-/* Price */
-.price {
-    font-size: 24px;
-    color: #ff4500;
-    font-weight: bold;
-    margin: 12px 0;
-}
-
-/* Description */
-.desc {
-    color: #ccc;
-    font-size: 15px;
-    margin-bottom: 20px;
-    line-height: 1.4;
+    height: 100%;
+    background: url('https://i.imgur.com/1XQwYQF.png') center/cover;
     opacity: 0;
     transition: 0.4s;
 }
-
-.product-card:hover .desc {
-    opacity: 1;
+.product-card:hover::after {
+    opacity: 0.35;
+    transform: scale(1.1);
 }
 
-/* BUY BUTTON */
+/* 🌋 BUY BUTTON */
 .buy-btn {
-    display: inline-block;
-    padding: 10px 20px;
     background: #ff4500;
+    padding: 10px 20px;
+    border-radius: 6px;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
     transition: 0.3s;
-    position: relative;
-    overflow: hidden;
 }
-
 .buy-btn:hover {
     background: #d62828;
-    transform: translateY(-3px);
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+    box-shadow: 0 0 15px rgba(255,69,0,0.6);
 }
 
-/* WHATSAPP BUTTON */
-.buy-btn.whatsapp {
-    background: #d62828;
+/* 🔥 EXPLODING BUTTON */
+.hero-btn:hover::after,
+.buy-btn:hover::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255,69,0,0.8), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: explode 0.4s ease-out;
+}
+@keyframes explode {
+    from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    to { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
-.buy-btn.whatsapp:hover {
-    background: #ff4500;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
-}
-
-/* FOOTER */
+/* 🌋 FOOTER */
 footer {
-    text-align: center;
-    padding: 20px;
     background: #0a0a0a;
+    padding: 20px;
+    text-align: center;
     color: #aaa;
-    margin-top: 40px;
 }
 
-/* FLOATING WHATSAPP CHAT BUBBLE */
+/* 🔥 WHATSAPP BUBBLE */
 .whatsapp-chat {
     position: fixed;
     bottom: 25px;
     right: 25px;
     background: #d62828;
-    color: #fff;
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -361,47 +373,28 @@ footer {
     justify-content: center;
     align-items: center;
     font-size: 28px;
+    color: #fff;
     text-decoration: none;
-    box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
-    transition: 0.3s;
-    z-index: 9999;
-    animation: pulse 2.5s infinite ease-in-out;
+    box-shadow: 0 0 15px rgba(255,69,0,0.6);
 }
 
-.whatsapp-chat:hover {
-    background: #ff4500;
-    transform: scale(1.1);
-}
-
-/* BACK TO TOP BUTTON */
+/* 🔥 BACK TO TOP */
 .back-to-top {
     position: fixed;
     bottom: 90px;
     right: 25px;
     background: #ff4500;
-    color: #fff;
-    padding: 12px 18px;
+    padding: 12px;
     border-radius: 50%;
-    font-size: 20px;
-    text-decoration: none;
+    color: #fff;
     display: none;
-    transition: 0.3s;
 }
-
 .back-to-top.show {
     display: block;
 }
 
-/* ANIMATIONS */
+/* 🌋 ANIMATIONS */
 @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(25px); }
-    100% { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-
-@keyframes cardFade {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
