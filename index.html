@@ -14,22 +14,33 @@
     <div class="lightning"></div>
     <div class="smoke"></div>
     <div class="lava-river"></div>
+    <div class="meteors"></div>
 
-    <!-- SOUND EFFECTS -->
+    <!-- SOUND EFFECTS (Region-Free) -->
     <audio id="lavaSound" autoplay loop>
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7f3e2b9c7f.mp3?filename=rumble-ambient-volcano-21977.mp3" type="audio/mp3">
+        <source src="https://files.catbox.moe/6q0p9p.mp3" type="audio/mp3">
     </audio>
 
     <audio id="thunderSound">
-        <source src="https://cdn.pixabay.com/download/audio/2021/09/07/audio_3b9b0e1b4e.mp3?filename=thunder-110397.mp3" type="audio/mp3">
+        <source src="https://files.catbox.moe/2z8j1u.mp3" type="audio/mp3">
     </audio>
 
     <audio id="eruptionSound">
-        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8b3e2b9c7f.mp3?filename=explosion-21978.mp3" type="audio/mp3">
+        <source src="https://files.catbox.moe/8x1m7u.mp3" type="audio/mp3">
     </audio>
 
+    <!-- VOLCANO INTRO -->
+    <div id="lava-loader">
+        <div class="lava-circle"></div>
+    </div>
+
+    <div id="intro-eruption">
+        <div class="eruption-flash"></div>
+        <h1 class="eruption-title">Rumaan’s Volcano Store</h1>
+    </div>
+
     <!-- NAVBAR -->
-    <nav class="navbar">
+    <nav class="navbar fire-border">
         <h2 class="logo">Rumaan's Volcano Store</h2>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -41,13 +52,13 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section class="hero fire-border">
 
         <!-- Eruption Glow -->
         <div class="eruption"></div>
 
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="https://cdn.pixabay.com/vimeo/458533921/volcano-33153.mp4?width=1280&hash=8e7f3b8b0f" type="video/mp4">
+            <source src="https://files.catbox.moe/8m6j6j.mp4" type="video/mp4">
         </video>
 
         <div class="hero-overlay"></div>
@@ -64,7 +75,7 @@
     </section>
 
     <!-- FEATURED PRODUCTS -->
-    <section class="featured" id="featured">
+    <section class="featured fire-border" id="featured">
         <h2 class="section-title">Molten Featured Products</h2>
 
         <div class="slider-container">
@@ -95,12 +106,12 @@
     </section>
 
     <!-- SEARCH BAR -->
-    <section class="search-section">
+    <section class="search-section fire-border">
         <input type="text" id="searchInput" placeholder="Search lava products...">
     </section>
 
     <!-- PRODUCT SECTION -->
-    <section class="products" id="products">
+    <section class="products fire-border" id="products">
 
         <div class="product-card">
             <img src="images/product1.jpg" alt="Used iPhone 12">
@@ -132,7 +143,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer id="contact">
+    <footer id="contact" class="fire-border">
         <p>© 2026 Rumaan's Volcano Store — Manchester, UK</p>
     </footer>
 
@@ -142,6 +153,9 @@
 
     <!-- BACK TO TOP -->
     <a href="#" class="back-to-top">↑</a>
+
+    <!-- ROCK TRANSITION -->
+    <div id="rock-transition"></div>
 
     <!-- JAVASCRIPT -->
     <script>
@@ -203,6 +217,25 @@
             fb.style.top = e.pageY + "px";
             document.body.appendChild(fb);
             setTimeout(() => fb.remove(), 600);
+        });
+
+        // Meteor shower
+        setInterval(() => {
+            const m = document.createElement("div");
+            m.classList.add("meteor");
+            m.style.left = Math.random() * window.innerWidth + "px";
+            m.style.top = "-50px";
+            document.querySelector(".meteors").appendChild(m);
+            setTimeout(() => m.remove(), 1000);
+        }, 300);
+
+        // Rock-breaking transitions
+        document.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                const rt = document.getElementById("rock-transition");
+                rt.style.opacity = 1;
+                setTimeout(() => rt.style.opacity = 0, 600);
+            });
         });
     </script>
 

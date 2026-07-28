@@ -1,6 +1,6 @@
 /* 🌋 GLOBAL VOLCANO BACKGROUND */
 body {
-    background: url('https://i.imgur.com/6YVQ0Qk.jpeg') center/cover fixed;
+    background: url('https://files.catbox.moe/7m4k2n.png') center/cover fixed;
     color: #f2f2f2;
     margin: 0;
     padding: 0;
@@ -61,13 +61,13 @@ body {
     97% { opacity: 0; }
 }
 
-/* 🌫 SMOKE RISING */
+/* 🌫 SMOKE */
 .smoke {
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 200px;
-    background: url('https://i.imgur.com/8QfQ2Qp.png');
+    background: url('https://files.catbox.moe/4j1p0v.png');
     background-size: cover;
     opacity: 0.4;
     animation: smokeRise 10s infinite linear;
@@ -84,7 +84,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 120px;
-    background: url('https://i.imgur.com/2u7QYfM.gif') repeat-x;
+    background: url("https://files.catbox.moe/9zj5qv.gif") repeat-x;
     background-size: cover;
     animation: lavaFlow 6s linear infinite;
     z-index: 900;
@@ -94,7 +94,30 @@ body {
     to { background-position: -1000px 0; }
 }
 
-/* 🌋 ERUPTION GLOW BEHIND HERO TEXT */
+/* 🌠 METEOR SHOWER */
+.meteors {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9998;
+}
+.meteor {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(180deg, #ff4500, transparent);
+    border-radius: 50%;
+    animation: meteorFall 1s linear forwards;
+}
+@keyframes meteorFall {
+    from { transform: translate(0,0) rotate(45deg); opacity: 1; }
+    to { transform: translate(300px,600px) rotate(45deg); opacity: 0; }
+}
+
+/* 🌋 ERUPTION GLOW */
 .eruption {
     position: absolute;
     top: 20%;
@@ -113,7 +136,7 @@ body {
     100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
 }
 
-/* 🔥 FIREBALL CURSOR TRAIL */
+/* 🔥 FIREBALL CURSOR */
 .fireball {
     position: fixed;
     width: 25px;
@@ -127,6 +150,100 @@ body {
 @keyframes fireballFade {
     from { opacity: 1; transform: scale(1); }
     to { opacity: 0; transform: scale(2); }
+}
+
+/* ⚡ FIRE LIGHTNING BORDERS */
+.fire-border {
+    position: relative;
+}
+.fire-border::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff4500, transparent);
+    animation: lightningBorder 1.5s infinite;
+}
+@keyframes lightningBorder {
+    0% { opacity: 0; }
+    50% { opacity: 1; box-shadow: 0 0 20px #ff4500; }
+    100% { opacity: 0; }
+}
+
+/* 🌋 LAVA LOADING SCREEN */
+#lava-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    animation: loaderFade 3s forwards;
+}
+.lava-circle {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #ff4500, #d62828, #0a0a0a);
+    border-radius: 50%;
+    animation: lavaPulse 1.5s infinite;
+}
+@keyframes lavaPulse {
+    0% { transform: scale(1); box-shadow: 0 0 20px #ff4500; }
+    50% { transform: scale(1.3); box-shadow: 0 0 40px #d62828; }
+    100% { transform: scale(1); box-shadow: 0 0 20px #ff4500; }
+}
+@keyframes loaderFade {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
+}
+
+/* 🌋 VOLCANO INTRO EXPLOSION */
+#intro-eruption {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 99999;
+    animation: introFadeOut 4s forwards;
+}
+.eruption-flash {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ff4500, transparent);
+    border-radius: 50%;
+    animation: eruptionBoom 2s ease-out;
+}
+.eruption-title {
+    color: #ff4500;
+    font-size: 40px;
+    margin-top: 20px;
+    animation: eruptionText 2s ease-out;
+}
+@keyframes eruptionBoom {
+    from { transform: scale(0); opacity: 1; }
+    to { transform: scale(5); opacity: 0; }
+}
+@keyframes eruptionText {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+}
+@keyframes introFadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; visibility: hidden; }
 }
 
 /* 🌋 NAVBAR */
@@ -207,13 +324,30 @@ body {
     color: #fff;
     text-decoration: none;
     transition: 0.3s;
+    position: relative;
 }
 .hero-btn:hover {
     background: #d62828;
     box-shadow: 0 0 20px rgba(255,69,0,0.7);
 }
-.hero-btn.secondary {
-    background: #d62828;
+
+/* 🔥 EXPLODING BUTTON */
+.hero-btn:hover::after,
+.buy-btn:hover::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255,69,0,0.8), transparent);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: explode 0.4s ease-out;
+}
+@keyframes explode {
+    from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    to { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
 /* 🌋 FEATURED SECTION */
@@ -310,7 +444,7 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url('https://i.imgur.com/1XQwYQF.png') center/cover;
+    background: url('https://files.catbox.moe/7m4k2n.png') center/cover;
     opacity: 0;
     transition: 0.4s;
 }
@@ -327,29 +461,11 @@ body {
     color: #fff;
     text-decoration: none;
     transition: 0.3s;
+    position: relative;
 }
 .buy-btn:hover {
     background: #d62828;
     box-shadow: 0 0 15px rgba(255,69,0,0.6);
-}
-
-/* 🔥 EXPLODING BUTTON */
-.hero-btn:hover::after,
-.buy-btn:hover::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(255,69,0,0.8), transparent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: explode 0.4s ease-out;
-}
-@keyframes explode {
-    from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-    to { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
 }
 
 /* 🌋 FOOTER */
@@ -391,6 +507,20 @@ footer {
 }
 .back-to-top.show {
     display: block;
+}
+
+/* 🌋 ROCK TRANSITION */
+#rock-transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('https://files.catbox.moe/7m4k2n.png') center/cover;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999999;
+    transition: opacity 0.6s ease;
 }
 
 /* 🌋 ANIMATIONS */
