@@ -1,530 +1,262 @@
-/* 🌋 GLOBAL VOLCANO BACKGROUND */
+/* 🌋 GAME PAGE GLOBAL RESET */
 body {
-    background: url('https://files.catbox.moe/7m4k2n.png') center/cover fixed;
-    color: #f2f2f2;
     margin: 0;
-    padding: 0;
-    overflow-x: hidden;
     font-family: Arial, sans-serif;
-}
-
-/* 🌋 LAVA DRIP */
-.lava-drip {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 25px;
-    background: linear-gradient(180deg, #ff4500, transparent);
-    animation: drip 2s infinite ease-in-out;
-    z-index: 999;
-}
-@keyframes drip {
-    0% { height: 25px; opacity: 1; }
-    50% { height: 60px; opacity: 0.6; }
-    100% { height: 25px; opacity: 1; }
-}
-
-/* 🔥 FIRE PARTICLES */
-.fire-particles {
-    position: fixed;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(circle, rgba(255,69,0,0.8) 2px, transparent 2px);
-    background-size: 4px 4px;
-    animation: fireFloat 6s infinite linear;
-    z-index: 998;
-}
-@keyframes fireFloat {
-    from { transform: translateY(0); }
-    to { transform: translateY(-200px); }
-}
-
-/* ⚡ LIGHTNING FLASH */
-.lightning {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    opacity: 0;
-    animation: lightningFlash 8s infinite;
-    z-index: 997;
-}
-@keyframes lightningFlash {
-    0%, 95%, 100% { opacity: 0; }
-    96% { opacity: 0.8; }
-    97% { opacity: 0; }
-}
-
-/* 🌫 SMOKE */
-.smoke {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 200px;
-    background: url('https://files.catbox.moe/4j1p0v.png');
-    background-size: cover;
-    opacity: 0.4;
-    animation: smokeRise 10s infinite linear;
-    z-index: 996;
-}
-@keyframes smokeRise {
-    from { transform: translateY(0); }
-    to { transform: translateY(-80px); }
-}
-
-/* 🌋 LAVA RIVER */
-.lava-river {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 120px;
-    background: url("https://files.catbox.moe/9zj5qv.gif") repeat-x;
-    background-size: cover;
-    animation: lavaFlow 6s linear infinite;
-    z-index: 900;
-}
-@keyframes lavaFlow {
-    from { background-position: 0 0; }
-    to { background-position: -1000px 0; }
-}
-
-/* 🌠 METEOR SHOWER */
-.meteors {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 9998;
-}
-.meteor {
-    position: absolute;
-    width: 4px;
-    height: 20px;
-    background: linear-gradient(180deg, #ff4500, transparent);
-    border-radius: 50%;
-    animation: meteorFall 1s linear forwards;
-}
-@keyframes meteorFall {
-    from { transform: translate(0,0) rotate(45deg); opacity: 1; }
-    to { transform: translate(300px,600px) rotate(45deg); opacity: 0; }
-}
-
-/* 🌋 ERUPTION GLOW */
-.eruption {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(255,69,0,0.9), transparent);
-    border-radius: 50%;
-    transform: translateX(-50%);
-    animation: eruptionPulse 3s infinite ease-in-out;
-    z-index: 2;
-}
-@keyframes eruptionPulse {
-    0% { transform: translateX(-50%) scale(1); opacity: 0.6; }
-    50% { transform: translateX(-50%) scale(1.4); opacity: 1; }
-    100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
-}
-
-/* 🔥 FIREBALL CURSOR */
-.fireball {
-    position: fixed;
-    width: 25px;
-    height: 25px;
-    background: radial-gradient(circle, #ff4500, transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: fireballFade 0.6s linear forwards;
-    z-index: 9999;
-}
-@keyframes fireballFade {
-    from { opacity: 1; transform: scale(1); }
-    to { opacity: 0; transform: scale(2); }
-}
-
-/* ⚡ FIRE LIGHTNING BORDERS */
-.fire-border {
-    position: relative;
-}
-.fire-border::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #ff4500, transparent);
-    animation: lightningBorder 1.5s infinite;
-}
-@keyframes lightningBorder {
-    0% { opacity: 0; }
-    50% { opacity: 1; box-shadow: 0 0 20px #ff4500; }
-    100% { opacity: 0; }
-}
-
-/* 🌋 LAVA LOADING SCREEN */
-#lava-loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-    animation: loaderFade 3s forwards;
-}
-.lava-circle {
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, #ff4500, #d62828, #0a0a0a);
-    border-radius: 50%;
-    animation: lavaPulse 1.5s infinite;
-}
-@keyframes lavaPulse {
-    0% { transform: scale(1); box-shadow: 0 0 20px #ff4500; }
-    50% { transform: scale(1.3); box-shadow: 0 0 40px #d62828; }
-    100% { transform: scale(1); box-shadow: 0 0 20px #ff4500; }
-}
-@keyframes loaderFade {
-    0% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-/* 🌋 VOLCANO INTRO EXPLOSION */
-#intro-eruption {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 99999;
-    animation: introFadeOut 4s forwards;
-}
-.eruption-flash {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, #ff4500, transparent);
-    border-radius: 50%;
-    animation: eruptionBoom 2s ease-out;
-}
-.eruption-title {
-    color: #ff4500;
-    font-size: 40px;
-    margin-top: 20px;
-    animation: eruptionText 2s ease-out;
-}
-@keyframes eruptionBoom {
-    from { transform: scale(0); opacity: 1; }
-    to { transform: scale(5); opacity: 0; }
-}
-@keyframes eruptionText {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-@keyframes introFadeOut {
-    0% { opacity: 1; }
-    80% { opacity: 1; }
-    100% { opacity: 0; visibility: hidden; }
-}
-
-/* 🌋 NAVBAR */
-.navbar {
-    background: #0a0a0a;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #331000;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-.logo {
-    color: #ff4500;
-    font-size: 22px;
-    font-weight: bold;
-}
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-}
-.nav-links li a {
+    background: radial-gradient(circle, #300000, #000);
     color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.nav-links li a:hover {
-    color: #ff4500;
-}
-
-/* 🌋 HERO SECTION */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 75vh;
     overflow: hidden;
 }
-.hero-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
+
+/* 🌋 GAME GRID LAYOUT */
+#game-wrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr 260px;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
 }
-.hero-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.65);
-    backdrop-filter: blur(2px);
-    z-index: 2;
+
+/* 🌋 SIDE PANELS */
+#left-panel, #right-panel {
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    border-right: 1px solid #550000;
 }
-.hero-content {
-    position: relative;
-    z-index: 3;
+#right-panel {
+    border-right: none;
+    border-left: 1px solid #550000;
+}
+
+/* 🌋 TOP + BOTTOM PANELS */
+#top-panel {
+    grid-column: 1 / 4;
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid #550000;
+}
+#bottom-panel {
+    grid-column: 1 / 4;
+    padding: 10px;
+    background: rgba(0,0,0,0.8);
+    border-top: 1px solid #550000;
     text-align: center;
-    animation: fadeInUp 1.2s ease forwards;
-}
-.hero-content h1 {
-    color: #ff4500;
-    font-size: 52px;
-    animation: lavaGlow 3s infinite ease-in-out;
-}
-@keyframes lavaGlow {
-    0% { text-shadow: 0 0 10px #ff4500; }
-    50% { text-shadow: 0 0 25px #d62828; }
-    100% { text-shadow: 0 0 10px #ff4500; }
+    overflow-y: auto;
+    max-height: 300px;
 }
 
-/* 🌋 HERO BUTTONS */
-.hero-btn {
-    background: #ff4500;
-    padding: 12px 25px;
-    border-radius: 6px;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
+/* 🌋 ARENA */
+#arena {
     position: relative;
-}
-.hero-btn:hover {
-    background: #d62828;
-    box-shadow: 0 0 20px rgba(255,69,0,0.7);
-}
-
-/* 🔥 EXPLODING BUTTON */
-.hero-btn:hover::after,
-.buy-btn:hover::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(255,69,0,0.8), transparent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    animation: explode 0.4s ease-out;
-}
-@keyframes explode {
-    from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-    to { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
-}
-
-/* 🌋 FEATURED SECTION */
-.featured {
-    text-align: center;
-    padding: 40px 20px;
-}
-.section-title {
-    color: #ff4500;
-    font-size: 32px;
-}
-
-/* 🌋 SLIDER */
-.slider-container {
-    position: relative;
-    width: 90%;
-    margin: auto;
     overflow: hidden;
 }
-.slider {
-    display: flex;
-    gap: 20px;
-    transition: transform 0.5s ease;
-}
-.slide {
-    min-width: 250px;
-    background: #1a0f0f;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(255,69,0,0.3);
-    transition: 0.3s;
-}
-.slide:hover {
-    transform: translateY(-5px);
-}
-.slide img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    background: #ff4500;
-    color: #fff;
-    border-radius: 50%;
-    padding: 12px 18px;
-    cursor: pointer;
-    font-size: 22px;
-    transition: 0.3s;
-}
-.slider-btn:hover {
-    background: #d62828;
-}
-.prev { left: -10px; }
-.next { right: -10px; }
 
-/* 🌋 SEARCH BAR */
-.search-section {
-    text-align: center;
-    margin-top: 40px;
-}
-#searchInput {
+/* 🔥 BOSS HP BAR */
+#boss-hp-bar {
     width: 80%;
-    max-width: 400px;
-    padding: 12px;
+    margin: 0 auto;
+    height: 20px;
+    background: #330000;
     border: 2px solid #ff4500;
-    background: #1a0f0f;
-    color: #fff;
     border-radius: 8px;
 }
-
-/* 🌋 PRODUCT CARDS */
-.product-card {
-    background: #1a0f0f;
-    padding: 25px;
-    width: 280px;
-    border-radius: 14px;
-    text-align: center;
-    border: 2px solid rgba(255,69,0,0.5);
-    box-shadow: 0 0 25px rgba(255,69,0,0.4);
-    position: relative;
-    overflow: hidden;
-    transition: 0.3s;
-}
-.product-card:hover {
-    box-shadow: 0 0 45px rgba(255,69,0,0.8);
-}
-
-/* 🪨 CRACKED ROCK EFFECT */
-.product-card::after {
-    content: "";
-    position: absolute;
-    width: 100%;
+#boss-hp-fill {
     height: 100%;
-    background: url('https://files.catbox.moe/7m4k2n.png') center/cover;
-    opacity: 0;
-    transition: 0.4s;
-}
-.product-card:hover::after {
-    opacity: 0.35;
-    transform: scale(1.1);
-}
-
-/* 🌋 BUY BUTTON */
-.buy-btn {
-    background: #ff4500;
-    padding: 10px 20px;
+    width: 100%;
+    background: linear-gradient(90deg, #ff4500, #d62828);
     border-radius: 6px;
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-    position: relative;
+    transition: width 0.3s ease;
 }
-.buy-btn:hover {
-    background: #d62828;
-    box-shadow: 0 0 15px rgba(255,69,0,0.6);
-}
-
-/* 🌋 FOOTER */
-footer {
-    background: #0a0a0a;
-    padding: 20px;
+#boss-name {
     text-align: center;
-    color: #aaa;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #ff4500;
 }
 
-/* 🔥 WHATSAPP BUBBLE */
-.whatsapp-chat {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: #d62828;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
+/* ⚔️ PLAYER HUD */
+#player-hud {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: #fff;
-    text-decoration: none;
-    box-shadow: 0 0 15px rgba(255,69,0,0.6);
+    flex-direction: column;
+    gap: 8px;
+}
+.hud-bar {
+    background: #220000;
+    border: 2px solid #ff4500;
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+.hud-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.hud-fill {
+    height: 10px;
+    background: linear-gradient(90deg, #00ff00, #008000);
+    border-radius: 4px;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+.hud-fill.mana {
+    background: linear-gradient(90deg, #00bfff, #004c99);
 }
 
-/* 🔥 BACK TO TOP */
-.back-to-top {
-    position: fixed;
-    bottom: 90px;
-    right: 25px;
+/* ⚡ DIFFICULTY BUTTONS */
+#difficulty button {
+    margin: 3px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ff4500;
+    background: #200000;
+    color: #ff4500;
+    cursor: pointer;
+}
+#difficulty button.active {
     background: #ff4500;
-    padding: 12px;
-    border-radius: 50%;
-    color: #fff;
-    display: none;
-}
-.back-to-top.show {
-    display: block;
+    color: #000;
 }
 
-/* 🌋 ROCK TRANSITION */
-#rock-transition {
+/* 🔥 BOSS SPRITE */
+#boss {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(circle, #ff4500, #000);
+    border-radius: 50%;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 40px #ff4500;
+    transition: transform 0.2s ease;
+}
+#boss.phase2 {
+    box-shadow: 0 0 60px #ff0000;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+#boss.phase3 {
+    box-shadow: 0 0 80px #ff00ff;
+    transform: translate(-50%, -50%) scale(1.4);
+}
+
+/* 🔥 FIREBALL ATTACK */
+.fireball {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #ff4500, transparent);
+    border-radius: 50%;
+    animation: fireballShoot 0.6s linear forwards;
+}
+@keyframes fireballShoot {
+    from { transform: translate(0,0) scale(1); opacity: 1; }
+    to { transform: translate(200px,-200px) scale(2); opacity: 0; }
+}
+
+/* 🌋 TITAN DIALOGUE */
+#titan-dialogue {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    border: 2px solid #ff4500;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    min-width: 260px;
+    text-align: center;
+}
+
+/* 🏆 VICTORY SCREEN */
+#victory-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('https://files.catbox.moe/7m4k2n.png') center/cover;
+    background: radial-gradient(circle, #ff4500, #000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     pointer-events: none;
-    z-index: 999999;
     transition: opacity 0.6s ease;
+    z-index: 9999;
+}
+#victory-screen.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.victory-content {
+    text-align: center;
+}
+.loot-item {
+    background: #1a0f0f;
+    padding: 10px;
+    margin: 6px;
+    border-radius: 8px;
+    border: 2px solid #ff4500;
+    box-shadow: 0 0 15px #ff4500;
+}
+.loot-item a {
+    color: #ffdd99;
+    text-decoration: none;
 }
 
-/* 🌋 ANIMATIONS */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(25px); }
-    to { opacity: 1; transform: translateY(0); }
+#reset-btn {
+    margin-top: 15px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 2px solid #000;
+    background: #000;
+    color: #ff4500;
+    cursor: pointer;
 }
+
+/* 🌋 EARTHQUAKE EFFECT */
+.quake {
+    animation: quake 0.2s infinite;
+}
+@keyframes quake {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(3px,-3px); }
+    50% { transform: translate(-3px,3px); }
+    75% { transform: translate(3px,3px); }
+    100% { transform: translate(0,0); }
+}
+
+.info {
+    font-size: 13px;
+    color: #ffdd99;
+}
+
+/* 🌋 VOLCANO VFX (unchanged) */
+.lava-drip { position: fixed; top:0; left:0; width:100%; height:25px; background:linear-gradient(180deg,#ff4500,transparent); animation:drip 2s infinite; z-index:999; }
+@keyframes drip { 0%{height:25px;opacity:1;} 50%{height:60px;opacity:.6;} 100%{height:25px;opacity:1;} }
+
+.fire-particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; background-image:radial-gradient(circle,rgba(255,69,0,.8) 2px,transparent 2px); background-size:4px 4px; animation:fireFloat 6s infinite linear; z-index:998; }
+@keyframes fireFloat { from{transform:translateY(0);} to{transform:translateY(-200px);} }
+
+.lightning { position:fixed; top:0; left:0; width:100%; height:100%; background:white; opacity:0; animation:lightningFlash 8s infinite; z-index:997; }
+@keyframes lightningFlash { 0%,95%,100%{opacity:0;} 96%{opacity:.8;} 97%{opacity:0;} }
+
+.smoke { position:fixed; bottom:0; width:100%; height:200px; background:url('https://files.catbox.moe/4j1p0v.png'); background-size:cover; opacity:.4; animation:smokeRise 10s infinite linear; z-index:996; }
+@keyframes smokeRise { from{transform:translateY(0);} to{transform:translateY(-80px);} }
+
+.lava-river { position:fixed; bottom:0; width:100%; height:120px; background:url('https://files.catbox.moe/9zj5qv.gif') repeat-x; background-size:cover; animation:lavaFlow 6s linear infinite; z-index:900; }
+@keyframes lavaFlow { from{background-position:0 0;} to{background-position:-1000px 0;} }
+
+.meteors { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9998; }
+.meteor { position:absolute; width:4px; height:20px; background:linear-gradient(180deg,#ff4500,transparent); border-radius:50%; animation:meteorFall 1s linear forwards; }
+@keyframes meteorFall { from{transform:translate(0,0) rotate(45deg);opacity:1;} to{transform:translate(300px,600px) rotate(45deg);opacity:0;} }
+
+#lava-loader { position:fixed; top:0; left:0; width:100%; height:100%; background:#0a0a0a; display:flex; justify-content:center; align-items:center; z-index:999999; animation:loaderFade 3s forwards; }
+.lava-circle { width:120px; height:120px; background:radial-gradient(circle,#ff4500,#d62828,#0a0a0a); border-radius:50%; animation:lavaPulse 1.5s infinite; }
+@keyframes lavaPulse { 0%{transform:scale(1);box-shadow:0 0 20px #ff4500;} 50%{transform:scale(1.3);box-shadow:0 0 40px #d62828;} 100%{transform:scale(1);box-shadow:0 0 20px #ff4500;} }
+@keyframes loaderFade { 0%{opacity:1;} 80%{opacity:1;} 100%{opacity:0;visibility:hidden;} }
+
+#intro-eruption { position:fixed; top:0; left:0; width:100%; height:100%; background:black; display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:99999; animation:introFadeOut 4s forwards; }
+.eruption-flash { width:300px; height:300px; background:radial-gradient(circle,#ff4500,transparent); border-radius:50%; animation:eruptionBoom 2s ease-out; }
+.eruption-title { color:#ff4500; font-size:40px; margin-top:20px; animation:eruptionText 2s ease-out; }
+@keyframes eruptionBoom { from{transform:scale(0);opacity:1;} to{transform:scale(5);opacity:0;} }
+@keyframes eruptionText { from{opacity:0;transform:scale(.5);} to{opacity:1;transform:scale(1);} }
+@keyframes introFadeOut { 0%{opacity:1;} 80%{opacity:1;} 100%{opacity:0;visibility:hidden;} }
